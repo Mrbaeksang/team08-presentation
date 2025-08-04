@@ -11,9 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF6B6B; --secondary: #4ECDC4; --accent: #45B7D1;
-            --warning: #FFA726; --success: #66BB6A; --bg: #F8F9FA;
-            --dark: #2C3E50; --black: #000;
+            --primary: #FF1744; --secondary: #00E676; --accent: #2196F3;
+            --warning: #FF9800; --success: #4CAF50; --bg: #FFFFFF;
+            --dark: #000000; --black: #000000; --purple: #9C27B0; --yellow: #FFEB3B;
         }
         .reveal {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,10 +28,27 @@
         }
         
         .reveal h2 {
-            border-bottom: 3px solid;
-            border-image: linear-gradient(90deg, var(--primary), var(--secondary)) 1;
-            padding-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 40px;
+            border: 5px solid var(--black);
+            box-shadow: 10px 10px 0px var(--black);
             display: inline-block;
+            margin-bottom: 30px;
+            transform: skew(-5deg);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reveal h2::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            bottom: 5px;
+            left: 5px;
+            border: 2px solid rgba(255,255,255,0.3);
+            pointer-events: none;
         }
         
         /* Clean Reveal.js styling */
@@ -45,8 +62,9 @@
         }
         
         .brutal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 12px 12px 0px var(--black);
+            transform: translateY(-8px) translateZ(0);
+            box-shadow: 18px 18px 0px var(--black);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         
         .tech-item {
@@ -54,30 +72,115 @@
         }
         
         .tech-item:hover {
-            transform: scale(1.05);
-            box-shadow: 6px 6px 0px var(--black);
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 8px 8px 0px var(--black);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         
         .role-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 10px 10px 0px var(--black);
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 15px 15px 0px var(--black);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         
         .kpt-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 10px 10px 0px var(--black);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 15px 15px 0px var(--black);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        .reveal h1 { font-size: 3.5em; margin-bottom: 0.5em; }
+        .reveal h1 { 
+            font-size: 4.5em; margin-bottom: 0.3em; 
+            background: linear-gradient(45deg, var(--primary), var(--purple), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 4px 4px 0px var(--black);
+            position: relative;
+        }
         
         .reveal .slides section.title-slide {
             text-align: center;
+            background: linear-gradient(135deg, var(--bg) 0%, #E3F2FD 50%, var(--bg) 100%);
+            border: 8px solid var(--black);
+            box-shadow: 20px 20px 0px var(--black);
+            margin: 20px;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reveal .slides section.title-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 23, 68, 0.05) 10px,
+                rgba(255, 23, 68, 0.05) 20px
+            );
+            animation: moveDiagonal 20s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes moveDiagonal {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .title-slide h3 {
+            background: var(--secondary);
+            color: var(--black);
+            padding: 15px 30px;
+            border: 4px solid var(--black);
+            box-shadow: 8px 8px 0px var(--black);
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: 900;
+            transform: rotate(-1deg);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: rotate(-1deg) scale(1); }
+            50% { transform: rotate(1deg) scale(1.05); }
+        }
+        
+        .title-badge {
+            background: var(--warning);
+            color: var(--black);
+            padding: 10px 20px;
+            border: 3px solid var(--black);
+            box-shadow: 6px 6px 0px var(--black);
+            font-weight: 900;
+            display: inline-block;
+            transform: rotate(2deg);
+            margin: 10px;
+        }
+        
+        .title-slide small {
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border: 2px solid var(--black);
+            box-shadow: 4px 4px 0px var(--black);
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+            transform: rotate(-0.5deg);
         }
 
         .brutal-card {
-            background: white; border: 4px solid var(--black);
-            box-shadow: 8px 8px 0px var(--black); padding: 30px;
+            background: white; border: 6px solid var(--black);
+            box-shadow: 12px 12px 0px var(--black); padding: 30px;
             margin: 20px auto; border-radius: 0;
             max-width: 90%;
+            position: relative;
+            transform: translateZ(0);
         }
         
         /* Slide 3 specific adjustments */
